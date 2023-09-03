@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import TextFrom from './components/TextForm';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
+import About from './components/About';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
 function App() {
@@ -18,14 +20,14 @@ function App() {
     setTimeout(()=>{
       setAlert(null);
     },3000)
-    // const showSample=(sample)=>{
-    //   setSample({
-    //     sampple:sample,
-    //   })
-    //   setTimeout(()=>{
-    //     setSample("we ballllinnn")
-    //   },3000)
-    // }
+    const showSample=(sample)=>{
+      setSample({
+        sampple:sample,
+      })
+      setTimeout(()=>{
+        setSample("we ballllinnn")
+      },3000)
+    }
     
     
   }
@@ -44,16 +46,16 @@ function App() {
   }
   return (
     <>
-    <Navbar title="Textify" about="About us" mode={mode} toggleMode={toggleMode}/>
+    <BrowserRouter>
+    <Navbar title="Textoria" about="About us" mode={mode} toggleMode={toggleMode}/>
       <strong> <Alert alert={alert}/></strong>
     <div className="container my-3">
-    <TextFrom showAlert={showAlert}heading="enter the text of analyze" mode={mode}/>
-    {/* <Routes>
-          <Route exact path="/about" element={<About sample={sample}/>}></Route>
-          <Route exact path="/" element={}></Route>
-    </Routes> */}
+    <Routes>
+          <Route exact path="/about" element={<About sample={sample} mode={mode}/>}></Route>
+          <Route exact path="/" element={<TextFrom showAlert={showAlert} heading="Try Textoria - Word counter, Character counter , Remove extra spaces, Text-to-speech" mode={mode}/>}></Route>
+    </Routes>
     </div>
-    {/* </BrowserRouter> */}
+    </BrowserRouter>
     </>
 
   );
